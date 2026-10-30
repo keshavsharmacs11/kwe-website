@@ -1,134 +1,117 @@
 
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
-const announcements = [
-  {
-    label: "UPCOMING EVENT",
-    title: "Own Your Spotlight 2026",
-    detail: "13 December · Kurukshetra",
-    link: "#join",
-    action: "Discover",
-  },
-  {
-    label: "KWE SUMMIT",
-    title: "A celebration of women who lead",
-    detail: "Leadership & Entrepreneurship Summit",
-    link: "#join",
-    action: "Explore",
-  },
-  {
-    label: "YOUR NEXT CHAPTER",
-    title: "Meet. Connect. Grow.",
-    detail: "Be part of the KWE community",
-    link: "#join",
-    action: "Join KWE",
-  },
+const navLinks = [
+  { label: "Our Story", href: "#story" },
+  { label: "Experiences", href: "#experiences" },
+  { label: "Community", href: "#community" },
+  { label: "Moments", href: "#moments" },
+  { label: "Events", href: "#events" },
 ];
 
-export default function AnnouncementSlider() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+export default function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (paused) return;
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
 
-    const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % announcements.length);
-    }, 5000);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
-    return () => window.clearInterval(timer);
-  }, [paused]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-  const previous = () => {
-    setActiveIndex(
-      (current) => (current - 1 + announcements.length) % announcements.length
-    );
-  };
-
-  const next = () => {
-    setActiveIndex((current) => (current + 1) % announcements.length);
-  };
-
-  const announcement = announcements[activeIndex];
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <section
-      className="kwe-announcement"
-      aria-label="KWE announcements"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-          setPaused(false);
-        }
-      }}
+    <header
+      className={`site-header${scrolled ? " is-scrolled" : ""}`}
     >
-      <div className="kwe-announcement-inner shell">
-        <div className="kwe-announcement-brand">
-          <span className="kwe-announcement-spark">
-            <Sparkles size={14} />
-          </span>
-          <span>THE KWE EDIT</span>
-        </div>
-
-        <div
-          className="kwe-announcement-content"
-          aria-live="polite"
-          aria-atomic="true"
+      <div
+        className="header-inner shell"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "24px",
+        }}
+      >
+        <a
+          href="#home"
+          className="header-brand"
+          aria-label="Kurukshetra Women Entrepreneurs home"
+          onClick={closeMenu}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexShrink: 0,
+          }}
         >
-          <span className="kwe-announcement-label">
-            {announcement.label}
-          </span>
+          <Image
+            src="/images/kwe-logo-white.png"
+            alt="Kurukshetra Women Entrepreneurs"
+            width={250}
+            height={50}
+            priority
+            style={{
+              display: "block",
+              width: "min(250px, 24vw)",
+              height: "auto",
+              objectFit: "contain",
+            }}
+          />
+        </a>
 
-          <span className="kwe-announcement-divider" />
+        <nav
+          id="primary-navigation"
+          className={`desktop-nav${menuOpen ? " is-open" : ""}`}
+          aria-label="Main navigation"
+        >
+          {navLinks.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+            >
+              {item.label}
+            </a>
+          ))}
 
-          <span className="kwe-announcement-title" key={announcement.title}>
-            {announcement.title}
-          </span>
-
-          <span className="kwe-announcement-detail">
-            {announcement.detail}
-          </span>
-        </div>
-
-        <div className="kwe-announcement-controls">
           <a
-            className="kwe-announcement-link"
-            href={announcement.link}
+            className="mobile-nav-cta"
+            href="#join"
+            onClick={closeMenu}
           >
-            <span>{announcement.action}</span>
-            <ArrowUpRight size={15} />
+            Join KWE <ArrowUpRight size={16} />
           </a>
+        </nav>
 
-          <div className="kwe-announcement-arrows">
-            <button
-              type="button"
-              onClick={previous}
-              aria-label="Previous announcement"
-            >
-              <ChevronLeft size={16} />
-            </button>
+        <a className="header-join" href="#join">
+          Join KWE <ArrowUpRight size={16} />
+        </a>
 
-            <span className="kwe-announcement-count">
-              {String(activeIndex + 1).padStart(2, "0")}
-              <span>/</span>
-              {String(announcements.length).padStart(2, "0")}
-            </span>
-
-            <button
-              type="button"
-              onClick={next}
-              aria-label="Next announcement"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
-        </div>
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X size={23} /> : <Menu size={23} />}
+        </button>
       </div>
-    </section>
+    </header>
   );
 }
