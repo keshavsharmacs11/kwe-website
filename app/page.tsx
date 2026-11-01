@@ -10,13 +10,15 @@ import {
   Sparkles,
   Trophy,
   UsersRound,
-  WandSparkles, 
 } from "lucide-react";
 
 import EventAnnouncementBar from "@/app/components/event-announcement-bar";
 import SiteHeader from "@/app/components/site-header";
 import AnnouncementSlider from "@/app/components/announcement-slider";
 import Gallery from "@/app/components/gallery";
+import MemberSpotlight from "@/app/components/member-spotlight";
+import SponsorCarousel from "@/app/components/sponsor-carousel";
+import SiteFooter from "@/app/components/site-footer";
 
 const whatsapp = (message: string) =>
   `https://wa.me/918295398406?text=${encodeURIComponent(message)}`;
@@ -59,6 +61,9 @@ export default function HomePage() {
 
       {/* Main event hero carousel */}
       <AnnouncementSlider />
+
+       {/* Sponsor and collaboration partners */}
+      <SponsorCarousel />
 
       {/* Community highlights */}
       <section
@@ -256,66 +261,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Community */}
-      <section
-        id="community"
-        className="community-section section-pad"
-      >
-        <div className="shell community-layout">
-          <div className="community-photo">
-            <Image
-              src="/images/community-women-1.jpg"
-              alt="Women in business at a KWE gathering"
-              fill
-              sizes="(max-width: 720px) 92vw, 54vw"
-            />
-
-            <div className="community-photo-label">
-              <span className="photo-label-dot" />
-              THE PEOPLE BEHIND THE POSSIBILITIES
-            </div>
-          </div>
-
-          <div className="community-copy">
-            <p className="eyebrow">
-              <span className="eyebrow-mark" />
-              WOMEN, WORK & WHAT'S NEXT
-            </p>
-
-            <h2>
-              Real women.
-              <br />
-              <em>Remarkable</em>
-              <br />
-              journeys.
-            </h2>
-
-            <p className="body-copy">
-              Meet the people building businesses, creating
-              opportunities and shaping the future of our community.
-            </p>
-
-            <a
-              className="text-link"
-              href="https://www.instagram.com/kurukshetrawomenentrepreneurs/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Meet the community on Instagram
-              <ArrowRight size={16} />
-            </a>
-
-            <div className="community-stamp">
-              <WandSparkles size={18} />
-              <span>
-                Local roots.
-                <br />
-                <strong>Limitless ambition.</strong>
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Member spotlight replaces the previous generic community teaser. */}
+      <MemberSpotlight />
 
       {/* Gallery */}
       <section
@@ -411,59 +358,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="site-footer">
-        <div className="shell footer-main">
-          <a
-            href="#home"
-            className="footer-brand"
-            aria-label="Kurukshetra Women Entrepreneurs home"
-          >
-            <Image
-              src="/images/kwe-logo-white-website.png"
-              alt="Kurukshetra Women Entrepreneurs"
-              width={335}
-              height={67}
-            />
-          </a>
-
-          <p className="footer-tagline">
-            Connect. Inspire. Network.
-          </p>
-
-          <nav
-            className="footer-nav"
-            aria-label="Footer navigation"
-          >
-            <a href="#story">Our story</a>
-            <a href="#experiences">Experiences</a>
-            <a href="#community">Community</a>
-            <a href="#moments">Moments</a>
-          </nav>
-
-          <a
-            className="footer-social"
-            href="https://www.instagram.com/kurukshetrawomenentrepreneurs/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="KWE on Instagram"
-          >
-            <ArrowUpRight size={18} />
-          </a>
-        </div>
-
-        <div className="shell footer-bottom">
-          <span>
-            © {new Date().getFullYear()} Kurukshetra Women Entrepreneurs
-          </span>
-
-          <a href="#join">
-            Join KWE <ArrowUpRight size={14} />
-          </a>
-
-          <span>Made for women who build.</span>
-        </div>
-      </footer>
+      {/* Shared site footer */}
+      <SiteFooter />
     </main>
   );
 }

@@ -89,7 +89,29 @@ The Instagram links currently point to:
 
 `https://www.instagram.com/kurukshetrawomenentrepreneurs/`
 
-### SEO and domain
+#
+## Members, sponsors and gallery content
+
+### Add a member profile
+
+Edit `lib/members.ts`. Add one object to the `members` array with a unique `id`, verified `name`, `role`, `business`, an approved portrait path under `public/images/`, a short approved bio, and any confirmed public social URLs. Supported social platforms are `instagram`, `linkedin`, `facebook`, and `youtube`. The Members page and homepage spotlight use this single source of data.
+
+### Add a sponsor or partner logo
+
+Place the approved logo file in `public/images/sponsors/`, then add its details to `lib/sponsors.ts`. Use transparent SVG, WebP or PNG files where possible. Add a `website` only when the partner has supplied or confirmed the URL. The homepage sponsor carousel does not invent placeholder sponsor brands; it displays a partnership enquiry panel until real logos are added.
+
+### Add a gallery photograph
+
+Place the approved image in `public/images/` and add an entry to `lib/gallery.ts`. Choose one category: `Community`, `Events`, or `Highlights`. The homepage preview and `/gallery` page use the same image list. Use descriptive alt text and images KWE has permission to publish.
+
+### New website routes
+
+- `/members` — member directory with profile photographs and public social links.
+- `/gallery` — filtered photo gallery with image lightbox.
+
+The homepage navigation and footer link to both pages. The top KWE updates bar also links to the member, gallery and sponsor sections.
+
+## SEO and domain
 
 Edit title, description and social metadata in `app/layout.tsx`. Add the confirmed production domain before deployment if required.
 

@@ -1,67 +1,63 @@
 
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  ArrowUpRight,
-  ChevronLeft,
-  ChevronRight,
-  Sparkles,
-} from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 
 const announcements = [
   {
-    label: "UPCOMING EVENT",
+    label: "KWE SUMMIT",
     title: "Own Your Spotlight 2026",
     detail: "13 December · Kurukshetra",
+    href: "/#events",
+    action: "Explore",
   },
   {
-    label: "KWE SUMMIT",
-    title: "Leadership & Entrepreneurship Summit",
-    detail: "13 December 2026",
+    label: "MEMBER STORIES",
+    title: "Meet the women building what’s next",
+    detail: "Discover the KWE member community",
+    href: "/members",
+    action: "Meet members",
   },
   {
-    label: "JOIN OUR COMMUNITY",
-    title: "Connect. Inspire. Network.",
-    detail: "Your next chapter starts here",
+    label: "KWE MOMENTS",
+    title: "The people, conversations and connections",
+    detail: "Explore photographs from our community",
+    href: "/gallery",
+    action: "View gallery",
+  },
+  {
+    label: "PARTNER WITH KWE",
+    title: "Support women-led enterprise",
+    detail: "Explore sponsorship opportunities",
+    href: "/#sponsors",
+    action: "Partner with us",
   },
 ];
 
 export default function EventAnnouncementBar() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (paused) return;
-
-    const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % announcements.length);
-    }, 5000);
-
-    return () => window.clearInterval(timer);
-  }, [paused]);
-
-  const previous = () => {
-    setActiveIndex(
-      (current) =>
-        (current - 1 + announcements.length) % announcements.length
-    );
-  };
-
-  const next = () => {
-    setActiveIndex((current) => (current + 1) % announcements.length);
-  };
 
   const announcement = announcements[activeIndex];
+
+  // Automatically change updates every 2 seconds.
+  useEffect(() => {
+    if (announcements.length < 2) return;
+
+    const timer = window.setInterval(() => {
+      setActiveIndex(
+        (current) => (current + 1) % announcements.length
+      );
+    }, 2000);
+
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
     <section
       className="kwe-announcement"
-      aria-label="KWE event announcements"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      aria-label="KWE updates"
     >
       <div className="kwe-announcement-inner shell">
         <div className="kwe-announcement-brand">
@@ -95,34 +91,13 @@ export default function EventAnnouncementBar() {
         </div>
 
         <div className="kwe-announcement-controls">
-          <a className="kwe-announcement-link" href="#join">
-            <span>Discover</span>
+          <Link
+            className="kwe-announcement-link"
+            href={announcement.href}
+          >
+            <span>{announcement.action}</span>
             <ArrowUpRight size={15} />
-          </a>
-
-          <div className="kwe-announcement-arrows">
-            <button
-              type="button"
-              onClick={previous}
-              aria-label="Previous announcement"
-            >
-              <ChevronLeft size={16} />
-            </button>
-
-            <span className="kwe-announcement-count">
-              {String(activeIndex + 1).padStart(2, "0")}
-              <span>/</span>
-              {String(announcements.length).padStart(2, "0")}
-            </span>
-
-            <button
-              type="button"
-              onClick={next}
-              aria-label="Next announcement"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
+          </Link>
         </div>
       </div>
     </section>
