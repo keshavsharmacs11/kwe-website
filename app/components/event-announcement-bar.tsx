@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -8,14 +7,14 @@ import { ArrowUpRight, Sparkles } from "lucide-react";
 const announcements = [
   {
     label: "KWE SUMMIT",
-    title: "Own Your Spotlight 2026",
-    detail: "13 December · Kurukshetra",
+    title: "She Leads Kurukshetra 2026",
+    detail: "13 December · Divine Clarks Inn Suites",
     href: "/#events",
     action: "Explore",
   },
   {
     label: "MEMBER STORIES",
-    title: "Meet the women building what’s next",
+    title: "Meet the women building what's next",
     detail: "Discover the KWE member community",
     href: "/members",
     action: "Meet members",
@@ -41,9 +40,14 @@ export default function EventAnnouncementBar() {
 
   const announcement = announcements[activeIndex];
 
-  // Automatically change updates every 2 seconds.
+  // Rotate announcements unless the visitor prefers reduced motion.
   useEffect(() => {
-    if (announcements.length < 2) return;
+    if (
+      announcements.length < 2 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
 
     const timer = window.setInterval(() => {
       setActiveIndex(
@@ -60,16 +64,19 @@ export default function EventAnnouncementBar() {
       aria-label="KWE updates"
     >
       <div className="kwe-announcement-inner shell">
+        {/* Brand Label */}
         <div className="kwe-announcement-brand">
           <span className="kwe-announcement-spark">
             <Sparkles size={14} />
           </span>
+
           <span>KWE UPDATES</span>
         </div>
 
+        {/* Announcement Content */}
         <div
           className="kwe-announcement-content"
-          aria-live="polite"
+          aria-live="off"
           aria-atomic="true"
         >
           <span className="kwe-announcement-label">
@@ -90,10 +97,12 @@ export default function EventAnnouncementBar() {
           </span>
         </div>
 
+        {/* Announcement Link */}
         <div className="kwe-announcement-controls">
           <Link
             className="kwe-announcement-link"
             href={announcement.href}
+            aria-label={`${announcement.action}: ${announcement.title}`}
           >
             <span>{announcement.action}</span>
             <ArrowUpRight size={15} />

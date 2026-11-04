@@ -8,7 +8,7 @@ export default function SiteFooter() {
       <div className="shell footer-main">
         <Link href="/" className="footer-brand" aria-label="KWE home">
           <Image
-            src="/images/kwe-logo.png"
+            src="/images/kwe-logo-white.png"
             alt="Kurukshetra Women Entrepreneurs"
             width={3656}
             height={1200}

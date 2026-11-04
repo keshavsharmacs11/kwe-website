@@ -1,7 +1,5 @@
-
 import Image from "next/image";
 import {
-  ArrowRight,
   ArrowUpRight,
   Heart,
   Lightbulb,
@@ -50,9 +48,32 @@ const experiences = [
   },
 ];
 
+const communityHighlights = [
+  {
+    icon: UsersRound,
+    lead: "Powerful",
+    emphasis: "conversations",
+  },
+  {
+    icon: Network,
+    lead: "Meaningful",
+    emphasis: "connections",
+  },
+  {
+    icon: Trophy,
+    lead: "Celebrating",
+    emphasis: "women",
+  },
+  {
+    icon: Sparkles,
+    lead: "Ideas into",
+    emphasis: "impact",
+  },
+];
+
 export default function HomePage() {
   return (
-    <main id="home">
+    <main id="home" className="kwe-homepage">
       {/* Top sliding announcement bar */}
       <EventAnnouncementBar />
 
@@ -62,64 +83,31 @@ export default function HomePage() {
       {/* Main event hero carousel */}
       <AnnouncementSlider />
 
-       {/* Sponsor and collaboration partners */}
+      {/* Sponsor and collaboration partners */}
       <SponsorCarousel />
 
       {/* Community highlights */}
       <section
-        className="value-strip"
+        className="value-strip mobile-community-highlights"
         aria-label="What KWE brings together"
       >
-        <div className="value-strip-inner shell">
-          <div className="value-item">
-            <span className="value-icon">
-              <UsersRound size={20} />
-            </span>
-            <span>
-              Powerful
-              <br />
-              <strong>conversations</strong>
-            </span>
-          </div>
+        <div className="value-strip-inner shell value-strip-panel">
+          {communityHighlights.map((item) => {
+            const Icon = item.icon;
 
-          <span className="value-divider" />
+            return (
+              <div className="value-item" key={item.emphasis}>
+                <span className="value-icon" aria-hidden="true">
+                  <Icon size={20} />
+                </span>
 
-          <div className="value-item">
-            <span className="value-icon">
-              <Network size={20} />
-            </span>
-            <span>
-              Meaningful
-              <br />
-              <strong>connections</strong>
-            </span>
-          </div>
-
-          <span className="value-divider" />
-
-          <div className="value-item">
-            <span className="value-icon">
-              <Trophy size={20} />
-            </span>
-            <span>
-              Celebrating
-              <br />
-              <strong>women</strong>
-            </span>
-          </div>
-
-          <span className="value-divider" />
-
-          <div className="value-item">
-            <span className="value-icon">
-              <Sparkles size={20} />
-            </span>
-            <span>
-              Ideas into
-              <br />
-              <strong>impact</strong>
-            </span>
-          </div>
+                <span className="value-item-copy">
+                  <span className="value-item-lead">{item.lead}</span>
+                  <strong>{item.emphasis}</strong>
+                </span>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -128,14 +116,13 @@ export default function HomePage() {
         <div className="shell story-layout">
           <div className="story-copy">
             <p className="eyebrow">
-              <span className="eyebrow-mark" />
+              <span className="eyebrow-mark" aria-hidden="true" />
               THE KWE COMMUNITY
             </p>
 
             <h2>
-              More than
-              <br />
-              an event. <em>A movement.</em>
+              <span className="story-title-line">More than an event.</span>
+              <em>A movement.</em>
             </h2>
 
             <p className="body-copy">
@@ -143,27 +130,22 @@ export default function HomePage() {
               share ideas and grow — together.
             </p>
 
-            <a
-              href="#community"
-              className="button button-primary"
-            >
+            <a href="#community" className="button button-primary story-cta">
               Discover KWE <ArrowUpRight size={16} />
             </a>
 
             <span className="story-handwritten">
-              Make room
-              <br />
-              for more.
+              Make room for more.
             </span>
           </div>
 
-          <div className="story-visuals">
+          <div className="story-visuals" aria-label="KWE community moments">
             <div className="story-image-main">
               <Image
                 src="/images/community-women-2.jpg"
                 alt="Women entrepreneurs connecting at a KWE event"
                 fill
-                sizes="(max-width: 720px) 90vw, 48vw"
+                sizes="(max-width: 760px) 90vw, 48vw"
               />
             </div>
 
@@ -172,12 +154,12 @@ export default function HomePage() {
                 src="/images/community-women-3.jpg"
                 alt="A KWE community gathering"
                 fill
-                sizes="(max-width: 720px) 45vw, 20vw"
+                sizes="(max-width: 760px) 42vw, 20vw"
               />
             </div>
 
             <div className="story-sticker">
-              <Heart size={15} fill="currentColor" />
+              <Heart size={15} fill="currentColor" aria-hidden="true" />
               <span>
                 Built on connection.
                 <br />
@@ -185,7 +167,7 @@ export default function HomePage() {
               </span>
             </div>
 
-            <div className="story-orbit" />
+            <div className="story-orbit" aria-hidden="true" />
           </div>
         </div>
       </section>
@@ -195,13 +177,13 @@ export default function HomePage() {
         id="experiences"
         className="experience-section section-pad"
       >
-        <div className="experience-backdrop" />
+        <div className="experience-backdrop" aria-hidden="true" />
 
         <div className="shell experience-content">
           <div className="experience-heading">
             <div>
               <p className="eyebrow eyebrow-light">
-                <span className="eyebrow-mark" />
+                <span className="eyebrow-mark" aria-hidden="true" />
                 THE EXPERIENCE
               </p>
 
@@ -223,10 +205,7 @@ export default function HomePage() {
               const Icon = item.icon;
 
               return (
-                <article
-                  className="experience-card"
-                  key={item.number}
-                >
+                <article className="experience-card" key={item.number}>
                   <div className="experience-card-top">
                     <span className="experience-icon">
                       <Icon size={22} />
@@ -240,7 +219,7 @@ export default function HomePage() {
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
 
-                  <span className="experience-card-line" />
+                  <span className="experience-card-line" aria-hidden="true" />
                 </article>
               );
             })}
@@ -251,20 +230,17 @@ export default function HomePage() {
               CONNECT <i>•</i> INSPIRE <i>•</i> NETWORK
             </span>
 
-            <a
-              href="#join"
-              className="button button-outline-light"
-            >
+            <a href="#join" className="button button-outline-light">
               Be part of it <ArrowUpRight size={16} />
             </a>
           </div>
         </div>
       </section>
 
-      {/* Member spotlight replaces the previous generic community teaser. */}
+      {/* Featured KWE member */}
       <MemberSpotlight />
 
-      {/* Gallery */}
+      {/* Community gallery */}
       <section
         id="moments"
         className="moments-section section-pad"
@@ -273,7 +249,7 @@ export default function HomePage() {
           <div className="section-heading-row">
             <div>
               <p className="eyebrow">
-                <span className="eyebrow-mark" />
+                <span className="eyebrow-mark" aria-hidden="true" />
                 A FEW GOOD MOMENTS
               </p>
 
@@ -308,7 +284,7 @@ export default function HomePage() {
         <div className="shell join-layout">
           <div className="join-copy">
             <p className="eyebrow eyebrow-light">
-              <span className="eyebrow-mark" />
+              <span className="eyebrow-mark" aria-hidden="true" />
               KURUKSHETRA WOMEN ENTREPRENEURS
             </p>
 
@@ -327,7 +303,7 @@ export default function HomePage() {
 
           <div className="join-action">
             <span className="join-panel-label">
-              <span className="join-panel-dot" />
+              <span className="join-panel-dot" aria-hidden="true" />
               THE KWE COMMUNITY
             </span>
 

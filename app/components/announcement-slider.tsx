@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -6,11 +5,11 @@ import { useEffect, useState } from "react";
 import {
   ArrowDownRight,
   ArrowUpRight,
+  ArrowLeft,
   CalendarDays,
   ExternalLink,
   MapPin,
   X,
-  ArrowLeft,
 } from "lucide-react";
 
 import { announcements } from "@/lib/announcements";
@@ -21,10 +20,16 @@ export default function AnnouncementSlider() {
 
   const active = announcements[activeIndex];
 
-  // Automatically rotate every 2 seconds.
-  // Pause while the details popup is open.
+  // Automatically rotate announcements.
+  // Pause while the popup is open or reduced motion is enabled.
   useEffect(() => {
-    if (detailsOpen || announcements.length < 2) return;
+    if (
+      detailsOpen ||
+      announcements.length < 2 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
 
     const timer = window.setInterval(() => {
       setActiveIndex(
@@ -35,7 +40,7 @@ export default function AnnouncementSlider() {
     return () => window.clearInterval(timer);
   }, [detailsOpen]);
 
-  // Close popup using Escape key.
+  // Close popup using Escape.
   useEffect(() => {
     if (!detailsOpen) return;
 
@@ -77,6 +82,7 @@ export default function AnnouncementSlider() {
     body.style.right = "0";
     body.style.width = "100%";
     body.style.overflow = "hidden";
+
     html.style.overflow = "hidden";
 
     return () => {
@@ -93,6 +99,8 @@ export default function AnnouncementSlider() {
     };
   }, [detailsOpen]);
 
+  const closeDetails = () => setDetailsOpen(false);
+
   const isLive =
     active.status === "live" && Boolean(active.liveUrl);
 
@@ -108,7 +116,7 @@ export default function AnnouncementSlider() {
       className="hero-shell"
       aria-label="KWE announcements"
     >
-      {/* Background slides */}
+      {/* Background Slides */}
       {announcements.map((announcement, index) => (
         <div
           className={`hero-slide ${
@@ -119,7 +127,9 @@ export default function AnnouncementSlider() {
         >
           <Image
             src={announcement.image}
-            alt="Women entrepreneurs at a KWE event"
+            alt={`${announcement.title} ${
+              announcement.titleAccent ?? ""
+            } — KWE event`}
             fill
             priority={index === 0}
             sizes="100vw"
@@ -130,6 +140,7 @@ export default function AnnouncementSlider() {
 
       <div className="hero-overlay" />
 
+      {/* Hero Content */}
       <div className="hero-content shell">
         <div className="hero-copy" key={active.id}>
           <div className="eyebrow eyebrow-light">
@@ -156,7 +167,7 @@ export default function AnnouncementSlider() {
             <em>{active.titleAccent}</em>
           </h1>
 
-          {/* Event information */}
+          {/* Event Information */}
           {active.date && active.venue && (
             <div className="hero-event-meta">
               <div className="meta-item">
@@ -185,7 +196,7 @@ export default function AnnouncementSlider() {
             </div>
           )}
 
-          {/* Main action buttons */}
+          {/* Main Action Buttons */}
           <div className="hero-actions hero-actions-updated">
             {active.registrationUrl && (
               <a
@@ -215,6 +226,7 @@ export default function AnnouncementSlider() {
               type="button"
               className="hero-details-button"
               onClick={() => setDetailsOpen(true)}
+              aria-haspopup="dialog"
             >
               View Details
               <ArrowDownRight size={17} />
@@ -222,7 +234,7 @@ export default function AnnouncementSlider() {
           </div>
         </div>
 
-        {/* Side text */}
+        {/* Side Text */}
         <div className="hero-side-note" aria-hidden="true">
           <span className="side-note-line" />
 
@@ -236,11 +248,11 @@ export default function AnnouncementSlider() {
 
       <div className="hero-bottom-glow" />
 
-      {/* Event details popup */}
+      {/* Event Details Popup */}
       {detailsOpen && (
         <div
           className="kwe-details-backdrop"
-          onClick={() => setDetailsOpen(false)}
+          onClick={closeDetails}
         >
           <div
             className="kwe-details-modal"
@@ -249,12 +261,13 @@ export default function AnnouncementSlider() {
             aria-labelledby="kwe-details-title"
             onClick={(event) => event.stopPropagation()}
           >
-            {/* Popup header */}
-            <div className="kwe-details-header">
+            {/* Popup Header */}
+            {/* Uses the existing CSS class kwe-details-topbar */}
+            <div className="kwe-details-topbar">
               <button
                 type="button"
                 className="kwe-details-back"
-                onClick={() => setDetailsOpen(false)}
+                onClick={closeDetails}
               >
                 <ArrowLeft size={17} />
                 <span>Back</span>
@@ -263,7 +276,7 @@ export default function AnnouncementSlider() {
               <button
                 type="button"
                 className="kwe-details-close"
-                onClick={() => setDetailsOpen(false)}
+                onClick={closeDetails}
                 aria-label="Close details"
               >
                 <X size={21} />
@@ -279,14 +292,14 @@ export default function AnnouncementSlider() {
               <em>{active.titleAccent}</em>
             </h2>
 
+            {/* Scrollable Details */}
             <div className="kwe-details-content">
               {active.details.map((paragraph, index) => {
                 const isHeading =
                   paragraph === "✨ Nomination Categories" ||
                   paragraph === "Why Nominate?";
 
-                const isChecklist =
-                  paragraph.startsWith("✔");
+                const isChecklist = paragraph.startsWith("✔");
 
                 return (
                   <p
@@ -304,7 +317,7 @@ export default function AnnouncementSlider() {
               })}
             </div>
 
-            {/* Popup action buttons */}
+            {/* Popup Action Buttons */}
             <div className="kwe-details-actions">
               {active.registrationUrl && (
                 <a
