@@ -7669,3 +7669,52 @@ img {
     transform: none !important;
   }
 }
+
+/* =========================================
+   KWE FOOTER — WHITE NAVBAR LOGO
+========================================= */
+
+.site-footer .footer-brand {
+  display: inline-flex !important;
+  width: fit-content !important;
+  max-width: 230px !important;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: 0 !important;
+  margin: 0;
+
+  overflow: visible !important;
+
+  border: none !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.site-footer .footer-brand img {
+  display: block !important;
+
+  width: 230px !important;
+  max-width: 100% !important;
+  height: auto !important;
+
+  object-fit: contain;
+  object-position: left center;
+
+  opacity: 1 !important;
+  background: transparent !important;
+}
+
+/* Mobile footer logo */
+@media (max-width: 760px) {
+  .site-footer .footer-brand {
+    max-width: 180px !important;
+  }
+
+  .site-footer .footer-brand img {
+    width: 170px !important;
+  }
+}
