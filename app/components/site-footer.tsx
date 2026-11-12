@@ -26,14 +26,16 @@ export default function SiteFooter() {
           Connect. Inspire. Network.
         </p>
 
-        {/* Updated Footer Navigation */}
-       <nav className="footer-nav"
-        aria-label="Footer navigation">
+        {/* Footer Navigation */}
+        <nav
+          className="footer-nav"
+          aria-label="Footer navigation"
+        >
           <Link href="/#story">Our Story</Link>
           <Link href="/#members">Members</Link>
           <Link href="/#sponsors">Sponsors</Link>
           <Link href="/#events">Events</Link>
-      </nav>
+        </nav>
 
         {/* Instagram */}
         <a
@@ -44,7 +46,6 @@ export default function SiteFooter() {
           aria-label="KWE on Instagram"
         >
           <Instagram size={18} />
-          <ArrowUpRight size={14} />
         </a>
       </div>
 

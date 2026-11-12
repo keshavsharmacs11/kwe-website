@@ -1,5 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="18" fill="#9900E6"/>
-  <circle cx="31" cy="31" r="22" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
-  <path d="M17 19v25M17 31l15-12M17 31l16 13M34 20v24M34 29l12-9M34 30l13 14" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="128"
+     height="128"
+     viewBox="0 0 128 128">
+
+  <defs>
+    <linearGradient id="background"
+                    x1="12" y1="10"
+                    x2="116" y2="120"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9900E6"/>
+      <stop offset="100%" stop-color="#2F003B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Purple rounded background -->
+  <rect x="4" y="4"
+        width="120" height="120"
+        rx="30"
+        fill="url(#background)"/>
+
+  <!-- Elegant outer circle -->
+  <circle cx="64" cy="64" r="48"
+          fill="none"
+          stroke="#F7D8FF"
+          stroke-width="1.5"
+          stroke-opacity="0.35"/>
+
+  <!-- KW Monogram -->
+  <g fill="none"
+     stroke="#FFFFFF"
+     stroke-width="8"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <!-- K -->
+    <path d="M27 39 V89"/>
+    <path d="M29 64 L54 40"/>
+    <path d="M29 64 L55 88"/>
+
+    <!-- W -->
+    <path d="M53 44 L67 88 L82 59 L97 88 L111 44"/>
+
+  </g>
+
+  <!-- Small decorative accent -->
+  <circle cx="64" cy="64" r="3" fill="#F7D8FF"/>
+
 </svg>

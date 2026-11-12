@@ -11110,3 +11110,85 @@ section[id],
     padding-bottom: 28px !important;
   }
 }
+/* =========================================
+   KWE COMMUNITY HIGHLIGHTS — TYPOGRAPHY FIX
+========================================= */
+
+.value-strip-inner .value-item-copy {
+  display: inline-flex;
+  min-width: 0;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 0.3em;
+  row-gap: 2px;
+}
+
+.value-strip-inner .value-item-lead {
+  color: #725a7c;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.value-strip-inner .value-item-copy strong {
+  color: #2f003b;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.45;
+  overflow-wrap: normal;
+}
+
+@media (max-width: 760px) {
+  .value-strip-inner .value-item-copy {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .value-strip-inner .value-item-lead {
+    font-size: 11px;
+  }
+
+  .value-strip-inner .value-item-copy strong {
+    font-size: 12px;
+  }
+}
+
+/* KWE COMMUNITY HIGHLIGHTS — TEXT SPACING FIX */
+
+.value-strip-inner .value-item-copy {
+  display: block !important;
+  min-width: 0;
+}
+
+.value-strip-inner .value-item-phrase {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 0.3em;
+  row-gap: 2px;
+}
+
+.value-strip-inner .value-item-lead {
+  white-space: normal;
+}
+
+.value-strip-inner .value-item-phrase strong {
+  white-space: normal;
+}
+
+/* Center Instagram icon inside footer circle */
+.site-footer .footer-social {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  padding: 0 !important;
+}
+
+.site-footer .footer-social svg {
+  display: block;
+  flex: 0 0 auto;
+  margin: 0;
+}

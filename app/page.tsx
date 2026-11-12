@@ -44,7 +44,6 @@ const communityHighlights = [
 export default function HomePage() {
   return (
     <main id="home" className="kwe-homepage">
-
       {/* Top Sliding Announcement Bar */}
       <EventAnnouncementBar />
 
@@ -73,11 +72,13 @@ export default function HomePage() {
                 </span>
 
                 <span className="value-item-copy">
-                  <span className="value-item-lead">
-                    {item.lead}
-                  </span>
+                  <span className="value-item-phrase">
+                    <span className="value-item-lead">
+                      {item.lead}
+                    </span>
 
-                  <strong>{item.emphasis}</strong>
+                    <strong>{item.emphasis}</strong>
+                  </span>
                 </span>
               </div>
             );
@@ -104,7 +105,6 @@ export default function HomePage() {
         />
 
         <div className="shell join-layout">
-
           {/* Join Section Introduction */}
           <div className="join-copy">
             <p className="eyebrow eyebrow-light">
@@ -164,7 +164,6 @@ export default function HomePage() {
 
       {/* Shared Site Footer */}
       <SiteFooter />
-
     </main>
   );
 }
