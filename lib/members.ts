@@ -62,7 +62,7 @@ export const members: KweMember[] = [
 
   {
     id: "yashika",
-    name: "Yashika",
+    name: "Yashika Sharma",
     role: "KWE Member",
     business: "YR IT Solutions",
     image: "/images/members/yashika.jpeg",
