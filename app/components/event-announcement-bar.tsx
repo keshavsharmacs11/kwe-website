@@ -16,7 +16,7 @@ const announcements = [
     label: "MEMBER STORIES",
     title: "Meet the women building what's next",
     detail: "Discover the KWE member community",
-    href: "/members",
+    href: "/#community",  
     action: "Meet members",
   },
   {

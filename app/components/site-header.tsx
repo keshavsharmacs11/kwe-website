@@ -19,7 +19,7 @@ export default function SiteHeader() {
   // Updated navigation — Experiences and Gallery removed.
  const navLinks = [
   { label: "Our Story", href: homeAnchor("#story") },
-  { label: "Members", href: homeAnchor("#members") },
+  { label: "Members", href: homeAnchor("#community") },
   { label: "Sponsors", href: homeAnchor("#sponsors") },
   { label: "Events", href: homeAnchor("#events") },
 ];

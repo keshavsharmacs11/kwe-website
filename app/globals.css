@@ -5310,21 +5310,23 @@ html {
   opacity: 0.75;
 }
 
+
 /* =========================================
-   KWE DETAILS POPUP — DESKTOP + MOBILE
+   KWE EVENT DETAILS MODAL
+   Clean desktop + mobile layout
 ========================================= */
+
 .kwe-details-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 99999;
+  z-index: 999999;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
   overflow: hidden;
   overscroll-behavior: none;
-  touch-action: none;
-  background: rgba(17, 0, 22, .78);
+  background: rgba(24, 0, 32, .78);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
   animation: kweModalFade .2s ease;
@@ -5334,25 +5336,29 @@ html {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: min(100%, 650px);
-  max-height: min(82vh, 760px);
+  width: min(760px, calc(100vw - 48px));
+  height: min(680px, calc(100dvh - 48px));
+  max-height: calc(100dvh - 48px);
+  min-height: 0;
+  padding: 28px 34px 24px;
   overflow: hidden;
-  padding: 30px 38px 34px;
   color: #35003f;
-  background: #fff9ff;
+  background: #fffaff;
   border: 1px solid rgba(245, 216, 255, .8);
   border-radius: 22px;
-  box-shadow: 0 25px 90px rgba(0, 0, 0, .35);
+  box-shadow: 0 25px 90px rgba(0, 0, 0, .32);
   animation: kweModalUp .25s ease;
 }
 
+/* Header */
+
 .kwe-details-topbar {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  flex: 0 0 auto;
-  margin: 0 0 22px;
+  margin: 0 0 18px;
 }
 
 .kwe-details-back {
@@ -5360,8 +5366,8 @@ html {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 38px;
-  padding: 0 14px;
+  min-height: 40px;
+  padding: 0 15px;
   border: 1px solid #ead9ef;
   border-radius: 999px;
   color: #5d0870;
@@ -5380,12 +5386,11 @@ html {
 }
 
 .kwe-details-close {
-  position: static;
   display: grid;
-  flex: 0 0 auto;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
   place-items: center;
-  width: 38px;
-  height: 38px;
   border: 0;
   border-radius: 50%;
   color: #35003f;
@@ -5399,21 +5404,28 @@ html {
   background: #eac8f5;
 }
 
+/* Brand label */
+
 .kwe-details-eyebrow {
   flex: 0 0 auto;
-  margin-bottom: 12px;
+  margin: 0 0 11px;
   color: #9224b5;
   font-size: 10px;
   font-weight: 800;
+  line-height: 1.5;
   letter-spacing: 2px;
 }
 
+/* Event title */
+
 .kwe-details-modal h2 {
   flex: 0 0 auto;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   color: #35003f;
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(28px, 5vw, 42px);
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 600;
+  letter-spacing: -.03em;
   line-height: 1.12;
 }
 
@@ -5422,26 +5434,36 @@ html {
   font-weight: 500;
 }
 
+/* Description — the only independently scrollable area */
+
 .kwe-details-content {
+  flex: 1 1 0;
   min-height: 0;
+  width: 100%;
+  margin: 0;
+  padding: 2px 12px 16px 0;
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
-  padding-right: 8px;
-  color: #514257;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: #c17cde #f5e8fa;
+  color: #594b61;
   font-size: 14px;
   line-height: 1.8;
-  touch-action: pan-y;
 }
 
 .kwe-details-content p {
-  margin: 0 0 12px;
+  margin: 0 0 13px;
+  color: inherit;
+  line-height: inherit;
   white-space: pre-line;
 }
 
 .kwe-details-content .detail-subheading {
-  margin-top: 14px;
-  color: #5d0870;
+  margin-top: 17px;
+  color: #650b83;
   font-weight: 800;
 }
 
@@ -5449,15 +5471,64 @@ html {
   color: #514257;
 }
 
+/* Action buttons — never shrink or disappear */
+
 .kwe-details-actions {
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 20px;
-  padding-top: 18px;
+  align-items: center;
+  gap: 11px;
+  margin: 0;
+  padding: 15px 0 0;
   border-top: 1px solid #ead9ef;
+  background: #fffaff;
 }
+
+.kwe-details-actions .hero-form-button {
+  display: inline-flex;
+  flex: 1 1 210px;
+  width: auto;
+  min-width: 0;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 11px 17px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: center;
+  white-space: normal;
+}
+
+.kwe-details-actions .hero-form-primary {
+  color: #35003f;
+  background: #f2d5fc;
+  border: 1px solid #e9c0f7;
+}
+
+.kwe-details-actions .hero-form-primary:hover {
+  background: #ead0f7;
+}
+
+.kwe-details-actions .hero-form-secondary {
+  color: #650b83;
+  background: #fff;
+  border: 1px solid #d9b6e8;
+}
+
+.kwe-details-actions .hero-form-secondary:hover {
+  color: #4c0865;
+  background: #fbf3ff;
+}
+
+.kwe-details-actions .hero-form-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Animations */
 
 @keyframes kweModalFade {
   from { opacity: 0; }
@@ -5465,26 +5536,40 @@ html {
 }
 
 @keyframes kweModalUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@media (max-width: 600px) {
+/* =========================================
+   MOBILE MODAL
+========================================= */
+
+@media (max-width: 760px) {
   .kwe-details-backdrop {
-    align-items: stretch;
-    padding: max(10px, env(safe-area-inset-top)) 10px max(10px, env(safe-area-inset-bottom));
+    align-items: center;
+    justify-content: center;
+    padding:
+      max(12px, env(safe-area-inset-top))
+      12px
+      max(12px, env(safe-area-inset-bottom));
   }
 
   .kwe-details-modal {
     width: 100%;
+    height: min(760px, calc(100dvh - 24px));
     max-height: 100%;
-    margin: auto 0;
-    padding: 18px 18px 20px;
-    border-radius: 18px;
+    padding: 18px 19px 16px;
+    border-radius: 19px;
   }
 
   .kwe-details-topbar {
-    margin-bottom: 18px;
+    margin-bottom: 13px;
   }
 
   .kwe-details-back {
@@ -5493,36 +5578,77 @@ html {
     font-size: 12px;
   }
 
+  .kwe-details-close {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+  }
+
   .kwe-details-eyebrow {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 9px;
     letter-spacing: 1.5px;
-    line-height: 1.5;
   }
 
   .kwe-details-modal h2 {
-    margin-bottom: 14px;
-    font-size: clamp(25px, 7vw, 34px);
+    margin-bottom: 11px;
+    font-size: clamp(25px, 7vw, 33px);
     line-height: 1.12;
   }
 
   .kwe-details-content {
+    padding: 2px 5px 13px 0;
     font-size: 13px;
     line-height: 1.7;
-    padding-right: 3px;
+  }
+
+  .kwe-details-content p {
+    margin-bottom: 10px;
   }
 
   .kwe-details-actions {
     flex-direction: column;
-    gap: 9px;
-    margin-top: 14px;
-    padding-top: 14px;
+    align-items: stretch;
+    gap: 8px;
+    padding-top: 12px;
   }
 
   .kwe-details-actions .hero-form-button {
+    flex: 0 0 auto;
     width: 100%;
     min-height: 46px;
-    justify-content: center;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+}
+
+/* Short mobile screens */
+
+@media (max-width: 760px) and (max-height: 650px) {
+  .kwe-details-modal {
+    height: calc(100dvh - 24px);
+  }
+
+  .kwe-details-topbar {
+    margin-bottom: 8px;
+  }
+
+  .kwe-details-eyebrow {
+    margin-bottom: 6px;
+  }
+
+  .kwe-details-modal h2 {
+    margin-bottom: 8px;
+    font-size: clamp(23px, 6vw, 28px);
+  }
+
+  .kwe-details-actions {
+    gap: 6px;
+    padding-top: 8px;
+  }
+
+  .kwe-details-actions .hero-form-button {
+    min-height: 42px;
   }
 }
 
@@ -7301,71 +7427,6 @@ img {
     width: 31px;
     height: 31px;
   }
-
-  /* Event details modal */
-  .kwe-details-backdrop {
-    align-items: stretch !important;
-    justify-content: center;
-    padding: max(10px, env(safe-area-inset-top)) 10px max(10px, env(safe-area-inset-bottom)) !important;
-  }
-
-  .kwe-details-modal {
-    width: 100% !important;
-    max-width: 100%;
-    max-height: 100% !important;
-    margin: auto 0;
-    padding: 18px 18px 20px !important;
-    border-radius: 18px !important;
-  }
-
-  .kwe-details-topbar,
-  .kwe-details-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 15px;
-  }
-
-  .kwe-details-back,
-  .kwe-details-close {
-    min-width: 40px;
-    min-height: 40px;
-  }
-
-  .kwe-details-eyebrow {
-    font-size: 9px;
-    line-height: 1.55;
-    letter-spacing: 1.2px;
-  }
-
-  .kwe-details-modal h2 {
-    margin-bottom: 13px;
-    font-size: clamp(25px, 7vw, 34px) !important;
-    line-height: 1.12;
-  }
-
-  .kwe-details-content {
-    min-height: 0;
-    padding-right: 4px;
-    font-size: 13px;
-    line-height: 1.7;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .kwe-details-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    margin-top: 13px;
-    padding-top: 13px;
-  }
-
-  .kwe-details-actions .hero-form-button {
-    width: 100%;
-    min-height: 46px;
-  }
-
   /* Lightboxes */
   .lightbox,
   .gallery-lightbox {
@@ -11191,4 +11252,113 @@ section[id],
   display: block;
   flex: 0 0 auto;
   margin: 0;
+}
+
+/* KWE MEMBER INSTAGRAM LINKS */
+
+.kwe-member-handle {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 7px;
+  color: #8c16bd;
+  font-size: 10px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.kwe-member-handle:hover {
+  color: #2f003b;
+}
+
+.kwe-member-profile-link {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border: 1px solid rgba(153, 0, 230, 0.22);
+  border-radius: 50%;
+  color: #9900e6;
+  background: #fbf2ff;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.kwe-member-profile-link:hover {
+  color: #ffffff;
+  background: #9900e6;
+  transform: scale(1.07);
+}
+
+/* KWE MEMBER BUSINESS LOGO AND INSTAGRAM STYLING */
+
+.kwe-member-name-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+}
+
+.kwe-member-name-row h3 {
+  min-width: 0;
+}
+
+.kwe-member-business-logo {
+  display: block;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  padding: 3px;
+  border-radius: 8px;
+  background: #ffffff;
+  object-fit: contain;
+}
+
+.kwe-member-handle {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 7px;
+  color: #8c16bd;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.kwe-member-handle:hover {
+  color: #2f003b;
+}
+
+.kwe-member-profile-link {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border: 1px solid rgba(153, 0, 230, 0.22);
+  border-radius: 50%;
+  color: #9900e6;
+  background: #fbf2ff;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.kwe-member-profile-link:hover {
+  color: #ffffff;
+  background: #9900e6;
+  transform: scale(1.07);
+}
+
+@media (max-width: 390px) {
+  .kwe-member-business-logo {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  .kwe-member-name-row {
+    gap: 7px;
+  }
 }

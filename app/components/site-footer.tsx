@@ -32,7 +32,7 @@ export default function SiteFooter() {
           aria-label="Footer navigation"
         >
           <Link href="/#story">Our Story</Link>
-          <Link href="/#members">Members</Link>
+          <Link href="/#community">Members</Link>
           <Link href="/#sponsors">Sponsors</Link>
           <Link href="/#events">Events</Link>
         </nav>

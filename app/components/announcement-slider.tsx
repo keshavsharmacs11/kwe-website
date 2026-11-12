@@ -1,5 +1,7 @@
+
 "use client";
 
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
@@ -247,105 +249,107 @@ export default function AnnouncementSlider() {
       </div>
 
       <div className="hero-bottom-glow" />
-
-      {/* Event Details Popup */}
-      {detailsOpen && (
-        <div
-          className="kwe-details-backdrop"
-          onClick={closeDetails}
-        >
+      
+      {/* Event Details Popup — React Portal */}
+      {detailsOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
           <div
-            className="kwe-details-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="kwe-details-title"
-            onClick={(event) => event.stopPropagation()}
+            className="kwe-details-backdrop"
+            onClick={closeDetails}
           >
-            {/* Popup Header */}
-            {/* Uses the existing CSS class kwe-details-topbar */}
-            <div className="kwe-details-topbar">
-              <button
-                type="button"
-                className="kwe-details-back"
-                onClick={closeDetails}
-              >
-                <ArrowLeft size={17} />
-                <span>Back</span>
-              </button>
+            <div
+              className="kwe-details-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="kwe-details-title"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {/* Popup Header */}
+              <div className="kwe-details-topbar">
+                <button
+                  type="button"
+                  className="kwe-details-back"
+                  onClick={closeDetails}
+                >
+                  <ArrowLeft size={17} />
+                  <span>Back</span>
+                </button>
 
-              <button
-                type="button"
-                className="kwe-details-close"
-                onClick={closeDetails}
-                aria-label="Close details"
-              >
-                <X size={21} />
-              </button>
-            </div>
+                <button
+                  type="button"
+                  className="kwe-details-close"
+                  onClick={closeDetails}
+                  aria-label="Close details"
+                >
+                  <X size={21} />
+                </button>
+              </div>
 
-            <div className="kwe-details-eyebrow">
-              KURUKSHETRA WOMEN ENTREPRENEURS
-            </div>
+              <div className="kwe-details-eyebrow">
+                KURUKSHETRA WOMEN ENTREPRENEURS
+              </div>
 
-            <h2 id="kwe-details-title">
-              {active.title}{" "}
-              <em>{active.titleAccent}</em>
-            </h2>
+              <h2 id="kwe-details-title">
+                {active.title}{" "}
+                <em>{active.titleAccent}</em>
+              </h2>
 
-            {/* Scrollable Details */}
-            <div className="kwe-details-content">
-              {active.details.map((paragraph, index) => {
-                const isHeading =
-                  paragraph === "✨ Nomination Categories" ||
-                  paragraph === "Why Nominate?";
+              {/* Scrollable Details */}
+              <div className="kwe-details-content">
+                {active.details.map((paragraph, index) => {
+                  const isHeading =
+                    paragraph === "✨ Nomination Categories" ||
+                    paragraph === "Why Nominate?";
 
-                const isChecklist = paragraph.startsWith("✔");
+                  const isChecklist = paragraph.startsWith("✔");
 
-                return (
-                  <p
-                    key={`${active.id}-detail-${index}`}
-                    className={[
-                      isHeading ? "detail-subheading" : "",
-                      isChecklist ? "detail-checklist" : "",
-                    ]
-                      .filter(Boolean)
-                      .join(" ")}
+                  return (
+                    <p
+                      key={`${active.id}-detail-${index}`}
+                      className={[
+                        isHeading ? "detail-subheading" : "",
+                        isChecklist ? "detail-checklist" : "",
+                      ]
+                        .filter(Boolean)
+                        .join(" ")}
+                    >
+                      {paragraph}
+                    </p>
+                  );
+                })}
+              </div>
+
+              {/* Popup Action Buttons */}
+              <div className="kwe-details-actions">
+                {active.registrationUrl && (
+                  <a
+                    href={active.registrationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hero-form-button hero-form-primary"
                   >
-                    {paragraph}
-                  </p>
-                );
-              })}
-            </div>
+                    Event Registration
+                    <ExternalLink size={16} />
+                  </a>
+                )}
 
-            {/* Popup Action Buttons */}
-            <div className="kwe-details-actions">
-              {active.registrationUrl && (
-                <a
-                  href={active.registrationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hero-form-button hero-form-primary"
-                >
-                  Event Registration
-                  <ExternalLink size={16} />
-                </a>
-              )}
-
-              {active.nominationUrl && (
-                <a
-                  href={active.nominationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hero-form-button hero-form-secondary"
-                >
-                  Submit Nomination
-                  <ExternalLink size={16} />
-                </a>
-              )}
+                {active.nominationUrl && (
+                  <a
+                    href={active.nominationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hero-form-button hero-form-secondary"
+                  >
+                    Submit Nomination
+                    <ExternalLink size={16} />
+                  </a>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </section>
   );
 }
