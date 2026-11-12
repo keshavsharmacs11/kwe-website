@@ -7,6 +7,7 @@ export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="shell footer-main">
+        {/* KWE Brand */}
         <Link
           href="/"
           className="footer-brand"
@@ -25,14 +26,16 @@ export default function SiteFooter() {
           Connect. Inspire. Network.
         </p>
 
-        <nav className="footer-nav" aria-label="Footer navigation">
-          <Link href="/#story">Our story</Link>
-          <Link href="/#experiences">Experiences</Link>
-          <Link href="/members">Members</Link>
+        {/* Updated Footer Navigation */}
+       <nav className="footer-nav"
+        aria-label="Footer navigation">
+          <Link href="/#story">Our Story</Link>
+          <Link href="/#members">Members</Link>
           <Link href="/#sponsors">Sponsors</Link>
-          <Link href="/gallery">Gallery</Link>
-        </nav>
+          <Link href="/#events">Events</Link>
+      </nav>
 
+        {/* Instagram */}
         <a
           className="footer-social"
           href="https://www.instagram.com/kurukshetrawomenentrepreneurs/"
@@ -45,6 +48,7 @@ export default function SiteFooter() {
         </a>
       </div>
 
+      {/* Footer Bottom */}
       <div className="shell footer-bottom">
         <span>
           © {new Date().getFullYear()} Kurukshetra Women Entrepreneurs

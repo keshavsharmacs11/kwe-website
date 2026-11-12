@@ -1,9 +1,6 @@
-import Image from "next/image";
+
 import {
   ArrowUpRight,
-  Heart,
-  Lightbulb,
-  Mic2,
   Network,
   Sparkles,
   Trophy,
@@ -13,40 +10,13 @@ import {
 import EventAnnouncementBar from "@/app/components/event-announcement-bar";
 import SiteHeader from "@/app/components/site-header";
 import AnnouncementSlider from "@/app/components/announcement-slider";
-import Gallery from "@/app/components/gallery";
-import MemberSpotlight from "@/app/components/member-spotlight";
 import SponsorCarousel from "@/app/components/sponsor-carousel";
+import CommunityStory from "@/app/components/community-story";
+import MemberSpotlight from "@/app/components/member-spotlight";
 import SiteFooter from "@/app/components/site-footer";
 
 const whatsapp = (message: string) =>
   `https://wa.me/918295398406?text=${encodeURIComponent(message)}`;
-
-const experiences = [
-  {
-    icon: Mic2,
-    number: "01",
-    title: "Ideas that move you",
-    description: "Conversations that open new ways of thinking.",
-  },
-  {
-    icon: Network,
-    number: "02",
-    title: "Connections that matter",
-    description: "Meet women building businesses and possibilities.",
-  },
-  {
-    icon: Trophy,
-    number: "03",
-    title: "Women worth celebrating",
-    description: "Bring remarkable work into the spotlight.",
-  },
-  {
-    icon: Lightbulb,
-    number: "04",
-    title: "Room to grow",
-    description: "Share knowledge, find support, keep moving.",
-  },
-];
 
 const communityHighlights = [
   {
@@ -74,19 +44,20 @@ const communityHighlights = [
 export default function HomePage() {
   return (
     <main id="home" className="kwe-homepage">
-      {/* Top sliding announcement bar */}
+
+      {/* Top Sliding Announcement Bar */}
       <EventAnnouncementBar />
 
-      {/* Main navigation */}
+      {/* Main Navigation */}
       <SiteHeader />
 
-      {/* Main event hero carousel */}
+      {/* Main Event Hero Carousel */}
       <AnnouncementSlider />
 
-      {/* Sponsor and collaboration partners */}
+      {/* Sponsors and Collaboration Partners */}
       <SponsorCarousel />
 
-      {/* Community highlights */}
+      {/* Community Highlights */}
       <section
         className="value-strip mobile-community-highlights"
         aria-label="What KWE brings together"
@@ -102,7 +73,10 @@ export default function HomePage() {
                 </span>
 
                 <span className="value-item-copy">
-                  <span className="value-item-lead">{item.lead}</span>
+                  <span className="value-item-lead">
+                    {item.lead}
+                  </span>
+
                   <strong>{item.emphasis}</strong>
                 </span>
               </div>
@@ -111,177 +85,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Our story */}
-      <section id="story" className="story-section section-pad">
-        <div className="shell story-layout">
-          <div className="story-copy">
-            <p className="eyebrow">
-              <span className="eyebrow-mark" aria-hidden="true" />
-              THE KWE COMMUNITY
-            </p>
+      {/* Our Story — YouTube Video and Founder Message */}
+      <CommunityStory />
 
-            <h2>
-              <span className="story-title-line">More than an event.</span>
-              <em>A movement.</em>
-            </h2>
-
-            <p className="body-copy">
-              A space for women entrepreneurs to connect, collaborate,
-              share ideas and grow — together.
-            </p>
-
-            <a href="#community" className="button button-primary story-cta">
-              Discover KWE <ArrowUpRight size={16} />
-            </a>
-
-            <span className="story-handwritten">
-              Make room for more.
-            </span>
-          </div>
-
-          <div className="story-visuals" aria-label="KWE community moments">
-            <div className="story-image-main">
-              <Image
-                src="/images/community-women-2.jpg"
-                alt="Women entrepreneurs connecting at a KWE event"
-                fill
-                sizes="(max-width: 760px) 90vw, 48vw"
-              />
-            </div>
-
-            <div className="story-image-float">
-              <Image
-                src="/images/community-women-3.jpg"
-                alt="A KWE community gathering"
-                fill
-                sizes="(max-width: 760px) 42vw, 20vw"
-              />
-            </div>
-
-            <div className="story-sticker">
-              <Heart size={15} fill="currentColor" aria-hidden="true" />
-              <span>
-                Built on connection.
-                <br />
-                <strong>Powered by women.</strong>
-              </span>
-            </div>
-
-            <div className="story-orbit" aria-hidden="true" />
-          </div>
-        </div>
-      </section>
-
-      {/* Experiences */}
-      <section
-        id="experiences"
-        className="experience-section section-pad"
-      >
-        <div className="experience-backdrop" aria-hidden="true" />
-
-        <div className="shell experience-content">
-          <div className="experience-heading">
-            <div>
-              <p className="eyebrow eyebrow-light">
-                <span className="eyebrow-mark" aria-hidden="true" />
-                THE EXPERIENCE
-              </p>
-
-              <h2>
-                Come for the
-                <br />
-                <em>connection.</em> Leave with possibility.
-              </h2>
-            </div>
-
-            <p className="experience-intro">
-              Every gathering is a chance to learn something, meet
-              someone, and see what could happen next.
-            </p>
-          </div>
-
-          <div className="experience-grid">
-            {experiences.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <article className="experience-card" key={item.number}>
-                  <div className="experience-card-top">
-                    <span className="experience-icon">
-                      <Icon size={22} />
-                    </span>
-
-                    <span className="experience-number">
-                      {item.number}
-                    </span>
-                  </div>
-
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-
-                  <span className="experience-card-line" aria-hidden="true" />
-                </article>
-              );
-            })}
-          </div>
-
-          <div className="experience-bottom">
-            <span>
-              CONNECT <i>•</i> INSPIRE <i>•</i> NETWORK
-            </span>
-
-            <a href="#join" className="button button-outline-light">
-              Be part of it <ArrowUpRight size={16} />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured KWE member */}
+      {/* Complete KWE Members Directory */}
       <MemberSpotlight />
 
-      {/* Community gallery */}
-      <section
-        id="moments"
-        className="moments-section section-pad"
-      >
-        <div className="shell">
-          <div className="section-heading-row">
-            <div>
-              <p className="eyebrow">
-                <span className="eyebrow-mark" aria-hidden="true" />
-                A FEW GOOD MOMENTS
-              </p>
-
-              <h2>
-                Connection looks
-                <br />
-                <em>good on us.</em>
-              </h2>
-            </div>
-
-            <p className="section-aside">
-              The faces, conversations and little moments that make
-              a community feel like yours.
-            </p>
-          </div>
-
-          <Gallery />
-        </div>
-      </section>
-
-      {/* Join KWE — the primary WhatsApp destination */}
+      {/* Join KWE — Primary WhatsApp Destination */}
       <section id="join" className="join-section">
         <div
           className="join-orb join-orb-one"
           aria-hidden="true"
         />
+
         <div
           className="join-orb join-orb-two"
           aria-hidden="true"
         />
 
         <div className="shell join-layout">
+
+          {/* Join Section Introduction */}
           <div className="join-copy">
             <p className="eyebrow eyebrow-light">
               <span className="eyebrow-mark" aria-hidden="true" />
@@ -301,9 +125,13 @@ export default function HomePage() {
             </p>
           </div>
 
+          {/* WhatsApp Join Card */}
           <div className="join-action">
             <span className="join-panel-label">
-              <span className="join-panel-dot" aria-hidden="true" />
+              <span
+                className="join-panel-dot"
+                aria-hidden="true"
+              />
               THE KWE COMMUNITY
             </span>
 
@@ -334,8 +162,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Shared site footer */}
+      {/* Shared Site Footer */}
       <SiteFooter />
+
     </main>
   );
 }

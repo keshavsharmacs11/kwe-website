@@ -1,3 +1,4 @@
+
 export type KweSponsor = {
   id: string;
   name: string;
@@ -7,33 +8,28 @@ export type KweSponsor = {
 };
 
 /**
- * Add approved sponsor/partner logos here. Use transparent SVG, WebP or PNG
- * files placed in public/images/sponsors/ and provide a real website URL when
- * one has been confirmed. The carousel intentionally renders no invented logos.
+ * KWE sponsors and collaboration partners.
+ * Logo files are stored in public/images/sponsors/
  */
 export const sponsors: KweSponsor[] = [
   {
-    id: "brand-one",
-    name: "hotstar",
-    logo: "/images/sponsors/jio.png",
-    website: "hotstar.com/in ",
+  id: "kwe",
+  name: "Kurukshetra Women Entrepreneurs",
+  logo: "/images/sponsors/kurukshetra-women-entrepreneurs.png", 
   },
   {
-    id: "brand-two",
-    name: "Nivea",
-    logo: "/images/sponsors/nivea.png",
-    website: "https://www.nivea.in/",
+    id: "advance-study-sector",
+    name: "Advance Study Sector",
+    logo: "/images/sponsors/advance-study-sector.png",
   },
   {
-    id: "brand-three",
-    name: "adidas",
-    logo: "/images/sponsors/adidas.png",
-    website: "https://www.nivea.in/",
+    id: "kavis-makeup-studio",
+    name: "Kavi's Makeup Studio",
+    logo: "/images/sponsors/kavis-makeup-studio.png",
   },
   {
-    id: "brand-four",
-    name: "Amazon",
-    logo: "/images/sponsors/amazon.png",
-    website: "https://www.nivea.in/",
+    id: "yr-it-solutions",
+    name: "YR IT Solutions",
+    logo: "/images/sponsors/yr-it-solutions.png",
   },
 ];

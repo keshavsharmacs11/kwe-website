@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -15,16 +16,15 @@ export default function SiteHeader() {
   const homeAnchor = (hash: string) =>
     pathname === "/" ? hash : `/${hash}`;
 
-  const navLinks = [
-    { label: "Our Story", href: homeAnchor("#story") },
-    { label: "Experiences", href: homeAnchor("#experiences") },
-    { label: "Members", href: "/members" },
-    { label: "Sponsors", href: homeAnchor("#sponsors") },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Events", href: homeAnchor("#events") },
-  ];
+  // Updated navigation — Experiences and Gallery removed.
+ const navLinks = [
+  { label: "Our Story", href: homeAnchor("#story") },
+  { label: "Members", href: homeAnchor("#members") },
+  { label: "Sponsors", href: homeAnchor("#sponsors") },
+  { label: "Events", href: homeAnchor("#events") },
+];
 
-  // Detect scrolling without unnecessary state updates.
+  // Detect scrolling.
   useEffect(() => {
     const handleScroll = () => {
       const nextScrolled = window.scrollY > 12;
@@ -45,12 +45,12 @@ export default function SiteHeader() {
     };
   }, []);
 
-  // Close the menu whenever the route changes.
+  // Close menu whenever the route changes.
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
-  // Allow keyboard users to close the mobile menu.
+  // Close mobile menu using Escape.
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -74,6 +74,7 @@ export default function SiteHeader() {
       className={`site-header${scrolled ? " is-scrolled" : ""}`}
     >
       <div className="header-inner shell">
+
         {/* KWE Brand */}
         <Link
           href="/"
@@ -91,7 +92,7 @@ export default function SiteHeader() {
           />
         </Link>
 
-        {/* Main Navigation */}
+        {/* Main Navigation — Desktop and Mobile */}
         <nav
           id="primary-navigation"
           className={`desktop-nav${menuOpen ? " is-open" : ""}`}
@@ -103,10 +104,7 @@ export default function SiteHeader() {
               href={item.href}
               onClick={closeMenu}
               aria-current={
-                (item.href === "/members" &&
-                  pathname === "/members") ||
-                (item.href === "/gallery" &&
-                  pathname === "/gallery")
+                item.href === "/members" && pathname === "/members"
                   ? "page"
                   : undefined
               }
@@ -115,7 +113,7 @@ export default function SiteHeader() {
             </Link>
           ))}
 
-          {/* Join CTA inside tablet/mobile menu */}
+          {/* Join CTA inside mobile menu */}
           <Link
             className="mobile-nav-cta"
             href={homeAnchor("#join")}
@@ -154,6 +152,7 @@ export default function SiteHeader() {
             <Menu size={22} />
           )}
         </button>
+
       </div>
     </header>
   );

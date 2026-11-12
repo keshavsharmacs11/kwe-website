@@ -1,4 +1,9 @@
-export type MemberSocialPlatform = "instagram" | "linkedin" | "facebook" | "youtube";
+
+export type MemberSocialPlatform =
+  | "instagram"
+  | "linkedin"
+  | "facebook"
+  | "youtube";
 
 export type MemberSocialLink = {
   platform: MemberSocialPlatform;
@@ -9,19 +14,28 @@ export type MemberSocialLink = {
 export type KweMember = {
   id: string;
   name: string;
-  role: string;
-  business: string;
+
+  /** Use only a verified public role or designation. */
+  role?: string;
+
+  /** Use only a verified public business name. */
+  business?: string;
+
   location?: string;
   image: string;
   imageAlt: string;
-  bio: string;
+
+  /** Optional short profile text. Leave empty until verified. */
+  bio?: string;
+
   socials: MemberSocialLink[];
 };
 
 /**
- * Public member profiles shown on the KWE website.
- * Add a portrait and verified public social URLs before publishing a profile.
+ * Public member profiles used by the homepage spotlight and member directory.
+ * Add business details and public social links only after they are confirmed.
  */
+
 export const members: KweMember[] = [
   {
     id: "bharti-sharma",
@@ -39,5 +53,32 @@ export const members: KweMember[] = [
         href: "https://www.instagram.com/labelaado_333/",
       },
     ],
+  },
+
+  {
+    id: "dr-monika-rohilla",
+    name: "Dr. Monika Rohilla",
+    role: "KWE Member",
+    image: "/images/members/dr-monika-rohilla.png",
+    imageAlt: "Dr. Monika Rohilla, KWE community member",
+    socials: [],
+  },
+
+  {
+    id: "kavita-arora",
+    name: "Kavita Arora",
+    role: "KWE Member",
+    image: "/images/members/kavita-arora.jpg",
+    imageAlt: "Kavita Arora, KWE community member",
+    socials: [],
+  },
+
+  {
+    id: "yashika",
+    name: "Yashika",
+    role: "KWE Member",
+    image: "/images/members/yashika.jpeg",
+    imageAlt: "Yashika, KWE community member",
+    socials: [],
   },
 ];
