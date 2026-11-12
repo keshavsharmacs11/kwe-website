@@ -36,7 +36,7 @@ export const announcements: Announcement[] = [
     eyebrow: "UPCOMING · KWE SUMMIT",
     title: "She Leads",
     titleAccent: "Kurukshetra 2026",
-    image: "/images/kwe-event-photo.jpg",
+    image:"/images/kwe-hero-speaker.jpeg",
     status: "upcoming",
 
     date: "13 DEC 2026",
@@ -69,7 +69,7 @@ export const announcements: Announcement[] = [
     title: "Celebrate Women.",
     titleAccent: "Recognise Impact.",
 
-    image: "/images/community-women-2.jpg",
+    image: "/images/kwe-hero-discussion.jpeg",
     status: "announcement",
 
     registrationUrl: EVENT_REGISTRATION_URL,
