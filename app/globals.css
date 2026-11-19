@@ -254,15 +254,15 @@ img {
   background:
     linear-gradient(
       90deg,
-      rgba(31, 0, 41, .98) 0%,
-      rgba(47, 0, 59, .90) 31%,
-      rgba(47, 0, 59, .58) 51%,
-      rgba(47, 0, 59, .08) 83%
+      rgba(31, 0, 41, .88) 0%,
+      rgba(47, 0, 59, .74) 31%,
+      rgba(47, 0, 59, .36) 51%,
+      rgba(47, 0, 59, .03) 83%
     ),
     linear-gradient(
       0deg,
-      rgba(32, 0, 42, .36),
-      transparent 42%
+      rgba(32, 0, 42, .20),
+      transparent 40%
     );
 }
 
@@ -1301,22 +1301,22 @@ img {
     object-position: 62% center;
   }
 
-  .hero-overlay {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(31, 0, 41, .12) 0%,
-        rgba(31, 0, 41, .17) 19%,
-        rgba(31, 0, 41, .76) 42%,
-        rgba(31, 0, 41, .98) 72%,
-        #2f003b 100%
-      ),
-      linear-gradient(
-        90deg,
-        rgba(31, 0, 41, .28),
-        rgba(31, 0, 41, .05)
-      );
-  }
+ .hero-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(31, 0, 41, .09) 0%,
+      rgba(31, 0, 41, .12) 19%,
+      rgba(31, 0, 41, .58) 42%,
+      rgba(31, 0, 41, .88) 72%,
+      #2f003b 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(31, 0, 41, .17),
+      rgba(31, 0, 41, .02)
+    );
+}
 
   .hero-content {
     align-items: flex-start;
@@ -6289,18 +6289,18 @@ img {
   }
 
   .hero-overlay {
-    z-index: 1;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(30, 0, 39, .03) 0%,
-        rgba(30, 0, 39, .08) 17%,
-        rgba(30, 0, 39, .45) 34%,
-        rgba(30, 0, 39, .86) 54%,
-        #2f003b 78%,
-        #2f003b 100%
-      );
-  }
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(30, 0, 39, .02) 0%,
+      rgba(30, 0, 39, .05) 17%,
+      rgba(30, 0, 39, .30) 34%,
+      rgba(30, 0, 39, .68) 54%,
+      rgba(47, 0, 59, .85) 78%,
+      rgba(47, 0, 59, .94) 100%
+    );
+}
 
   .hero-content {
     position: relative;
@@ -11360,5 +11360,300 @@ section[id],
 
   .kwe-member-name-row {
     gap: 7px;
+  }
+}
+/* =========================================
+   KWE SPONSOR SLIDER — SPEED & GAP FIX
+========================================= */
+
+/* Remove extra vertical space around sponsor strip */
+.sponsor-strip-section {
+  padding: 8px 0 14px !important;
+}
+
+/* Bring heading closer to the logos */
+.sponsor-strip-heading {
+  margin: 0 15px 10px !important;
+}
+
+/* Remove spacing between sponsor cards */
+.sponsor-strip-group {
+  gap: 0 !important;
+  padding-right: 0 !important;
+  margin: 0 !important;
+}
+
+/* Make logo cards sit close together */
+.sponsor-strip-item {
+  width: 170px !important;
+  min-width: 170px !important;
+  flex: 0 0 170px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Keep the logo boxes large */
+.sponsor-strip-logo {
+  width: 158px !important;
+  height: 94px !important;
+  flex: 0 0 94px !important;
+}
+
+/* Faster continuous movement */
+.sponsor-strip-track {
+  animation-duration: 16s !important;
+  animation-timing-function: linear !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .sponsor-strip-section {
+    padding: 8px 0 12px !important;
+  }
+
+  .sponsor-strip-group {
+    gap: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .sponsor-strip-item {
+    width: 132px !important;
+    min-width: 132px !important;
+    flex-basis: 132px !important;
+    padding: 0 !important;
+  }
+
+  .sponsor-strip-logo {
+    width: 130px !important;
+    height: 78px !important;
+    flex-basis: 78px !important;
+  }
+
+  .sponsor-strip-track {
+    animation-duration: 14s !important;
+  }
+}
+/* =========================================
+   KWE SPONSOR STRIP — CONTINUOUS CAROUSEL
+========================================= */
+
+.sponsor-strip-window {
+  width: 100%;
+  overflow: hidden;
+}
+
+.sponsor-strip-track {
+  display: flex !important;
+  width: max-content !important;
+  animation: kwe-sponsor-strip-loop 12s linear infinite !important;
+  will-change: transform;
+}
+
+.sponsor-strip-group {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  align-items: center;
+  gap: 12px !important;
+  padding-right: 0 !important;
+  margin: 0 !important;
+}
+
+.sponsor-strip-item {
+  display: flex !important;
+  width: 185px !important;
+  min-width: 185px !important;
+  flex: 0 0 185px !important;
+  min-height: 148px !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.sponsor-strip-logo {
+  width: 158px !important;
+  height: 94px !important;
+  flex: 0 0 94px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* Give the KWE wordmark a little more visual size */
+.sponsor-strip-logo--kwe {
+  transform: scale(1.15);
+  transform-origin: center;
+}
+
+.sponsor-strip-name {
+  width: 100% !important;
+  max-width: 175px !important;
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+/* Four identical groups: move exactly one group per cycle */
+@keyframes kwe-sponsor-strip-loop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .sponsor-strip-track {
+    animation-duration: 10s !important;
+  }
+
+  .sponsor-strip-group {
+    gap: 10px !important;
+  }
+
+  .sponsor-strip-item {
+    width: 145px !important;
+    min-width: 145px !important;
+    flex-basis: 145px !important;
+    min-height: 125px !important;
+    gap: 10px !important;
+  }
+
+  .sponsor-strip-logo {
+    width: 130px !important;
+    height: 78px !important;
+    flex-basis: 78px !important;
+  }
+
+  .sponsor-strip-logo--kwe {
+    transform: scale(1.08);
+  }
+
+  .sponsor-strip-name {
+    max-width: 140px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* =========================================
+   KWE — REFINED CONTINUOUS SPONSOR STRIP
+========================================= */
+
+.sponsor-strip-section {
+  padding: 12px 0 20px !important;
+}
+
+.sponsor-strip-heading {
+  margin: 0 15px 16px !important;
+}
+
+.sponsor-strip-window {
+  width: 100%;
+  overflow: hidden;
+}
+
+.sponsor-strip-track {
+  display: flex !important;
+  width: max-content !important;
+  animation: kwe-sponsor-strip-loop 18s linear infinite !important;
+  will-change: transform;
+}
+
+.sponsor-strip-group {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  align-items: center;
+  gap: 20px !important;
+  padding-right: 20px !important;
+}
+
+.sponsor-strip-item {
+  display: flex !important;
+  width: 165px !important;
+  min-width: 165px !important;
+  flex: 0 0 165px !important;
+  min-height: 125px !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 0 !important;
+  text-align: center;
+}
+
+/* Consistent logo cards */
+.sponsor-strip-logo {
+  display: block !important;
+  width: 150px !important;
+  height: 86px !important;
+  flex: 0 0 86px !important;
+  padding: 4px !important;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+}
+
+/* KWE logo: same card size, no enlargement */
+.sponsor-strip-logo--kwe {
+  transform: none !important;
+}
+
+.sponsor-strip-name {
+  display: block !important;
+  width: 100% !important;
+  max-width: 160px !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  text-align: center !important;
+}
+
+/* Three identical groups: seamless one-group loop */
+@keyframes kwe-sponsor-strip-loop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333333%);
+  }
+}
+
+.sponsor-strip-window:hover .sponsor-strip-track {
+  animation-play-state: paused;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .sponsor-strip-group {
+    gap: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .sponsor-strip-item {
+    width: 140px !important;
+    min-width: 140px !important;
+    flex-basis: 140px !important;
+    min-height: 112px !important;
+  }
+
+  .sponsor-strip-logo {
+    width: 128px !important;
+    height: 76px !important;
+    flex-basis: 76px !important;
+  }
+
+  .sponsor-strip-track {
+    animation-duration: 15s !important;
+  }
+
+  .sponsor-strip-name {
+    font-size: 10px !important;
   }
 }

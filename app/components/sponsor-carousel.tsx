@@ -32,11 +32,11 @@ export default function SponsorCarousel() {
 
       <div className="sponsor-strip-window">
         <div className="sponsor-strip-track">
-          {[0, 1].map((group) => (
+          {[0, 1, 2, 3].map((group) => (
             <div
               className="sponsor-strip-group"
               key={group}
-              aria-hidden={group === 1}
+              aria-hidden={group !== 0}
             >
               {sponsors.map((sponsor) => {
                 const content = (
@@ -46,11 +46,13 @@ export default function SponsorCarousel() {
                       alt={`${sponsor.name} logo`}
                       width={120}
                       height={55}
-                      className="sponsor-strip-logo"
+                      className={`sponsor-strip-logo ${
+                      sponsor.id === "kwe" ? "sponsor-strip-logo--kwe" : ""
+                     }`}
                     />
-                    <span className="sponsor-strip-name">
-                      {sponsor.name}
-                    </span>
+                   <span className="sponsor-strip-name">
+                   {sponsor.id === "kwe" ? "KWE" : sponsor.name}
+                  </span>
                   </>
                 );
 
@@ -60,7 +62,7 @@ export default function SponsorCarousel() {
                     href={sponsor.website}
                     target="_blank"
                     rel="noreferrer"
-                    tabIndex={group === 1 ? -1 : undefined}
+                    tabIndex={group === 0 ? undefined : -1}
                     key={`${group}-${sponsor.id}`}
                   >
                     {content}

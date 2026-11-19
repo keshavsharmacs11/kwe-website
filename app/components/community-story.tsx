@@ -21,7 +21,7 @@ export default function CommunityStory() {
           <div className="community-story-video-column">
             <div className="community-story-video-frame">
               <iframe
-                src="https://www.youtube.com/embed/qQmIu5YLzHY?rel=0&playsinline=1"
+                src="https://www.youtube.com/embed/31WJdgTy3pQ?rel=0&playsinline=1"
                 title="Kurukshetra Women Entrepreneurs - About Our Community"
                 loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
